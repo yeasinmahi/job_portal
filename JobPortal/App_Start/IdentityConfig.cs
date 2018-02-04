@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Configuration;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using JobPortal.Migrations;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using JobPortal.Models;
+using Twilio;
+using Twilio.Clients;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 
 namespace JobPortal
 {
@@ -23,7 +29,20 @@ namespace JobPortal
     {
         public Task SendAsync(IdentityMessage message)
         {
+
             // Plug in your SMS service here to send a text message.
+            //var Twilio = new TwilioRestClient(ConfigurationManager.AppSettings["ACc4f4bca1d53a62f0f6859109feb9f222"], ConfigurationManager.AppSettings["54896fa583939f17b561ae08f6962f4f"]);
+            //var result = Twilio.Request()
+                const string accountSid = "ACc4f4bca1d53a62f0f6859109feb9f222";
+            const string authToken = "54896fa583939f17b561ae08f6962f4f";
+            TwilioClient.Init(accountSid, authToken);
+
+            var to = new PhoneNumber(message.Destination);
+            var messages = MessageResource.Create(
+                to,
+                from: new PhoneNumber("+18064244462"),
+                body: message.Body);
+            string sid = messages.Sid;
             return Task.FromResult(0);
         }
     }
@@ -59,7 +78,7 @@ namespace JobPortal
             // Configure user lockout defaults
             manager.UserLockoutEnabledByDefault = true;
             manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
-            manager.MaxFailedAccessAttemptsBeforeLockout = 5;
+            manager.MaxFailedAccessAttemptsBeforeLockout = 3;
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
             // You can write your own provider and plug it in here.
