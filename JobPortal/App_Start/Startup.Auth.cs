@@ -5,6 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using JobPortal.Models;
+using Microsoft.Owin.Security.Google;
 
 namespace JobPortal
 {
@@ -57,11 +58,11 @@ namespace JobPortal
                appId: "2117903501766941",
                appSecret: "d73ca329db3b3bebde5492d775c831d0");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "123",
+                ClientSecret = "132"
+            });
         }
     }
 }

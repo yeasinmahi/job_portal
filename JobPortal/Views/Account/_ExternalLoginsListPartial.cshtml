@@ -31,6 +31,13 @@
                                 Sign in using @p.AuthenticationType
                             </button>
                         }
+                        else if (@p.AuthenticationType.Equals("twitter"))
+                        {
+                            <button type="submit" class="btn btn-block btn-social btn-twitter btn-flat" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">
+                                <i class="fa fa-twitter"></i>
+                                Sign in using @p.AuthenticationType
+                            </button>
+                        }
 
                     }
                 </p>

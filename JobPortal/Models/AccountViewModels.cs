@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Net.Mime;
+using System.Web.UI.WebControls;
 
 namespace JobPortal.Models
 {
@@ -65,6 +67,10 @@ namespace JobPortal.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Full Name")]
+        public string Name { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -79,6 +85,9 @@ namespace JobPortal.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "I accept agreements and terms")]
+        public bool AcceptAgreements { get; set; }
     }
 
     public class ResetPasswordViewModel
