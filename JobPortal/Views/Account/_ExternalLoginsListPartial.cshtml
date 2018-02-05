@@ -1,8 +1,5 @@
 ﻿@model JobPortal.Models.ExternalLoginListViewModel
 @using Microsoft.Owin.Security
-
-<h4>Use another service to log in.</h4>
-<hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
     if (loginProviders.Count() == 0) {
@@ -16,12 +13,35 @@
     else {
         using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
             @Html.AntiForgeryToken()
-            <div id="socialLoginList">
+            <div id="socialLoginList" class="social-auth-links text-center">
                 <p>
-                    @foreach (AuthenticationDescription p in loginProviders) {
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                    @foreach (AuthenticationDescription p in loginProviders)
+                    {
+                        if (@p.AuthenticationType.Equals("Facebook"))
+                        {
+                            <button type="submit" class="btn btn-block btn-social btn-facebook btn-flat" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">
+                                <i class="fa fa-facebook"></i>
+                                Sign in using @p.AuthenticationType
+                            </button>
+                        }
+                        else if (@p.AuthenticationType.Equals("Google"))
+                        {
+                            <button type="submit" class="btn btn-block btn-social btn-google btn-flat" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">
+                                <i class="fa fa-google-plus"></i>
+                                Sign in using @p.AuthenticationType
+                            </button>
+                        }
+
                     }
                 </p>
+                @*<a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
+                    <i class="fa fa-facebook"></i> Sign in using
+                    Facebook
+                </a>
+                <a href="#" class="btn btn-block btn-social btn-google btn-flat">
+                    <i class="fa fa-google-plus"></i> Sign in using
+                    Google+
+                </a>*@
             </div>
         }
     }
