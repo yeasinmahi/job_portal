@@ -16,6 +16,8 @@ namespace JobPortal.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public int CustomUserId { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
