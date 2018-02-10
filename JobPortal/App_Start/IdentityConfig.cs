@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Configuration;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using JobPortal.Migrations;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -10,7 +8,6 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using JobPortal.Models;
 using Twilio;
-using Twilio.Clients;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
 

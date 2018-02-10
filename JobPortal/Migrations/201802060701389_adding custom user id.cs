@@ -1,8 +1,7 @@
 namespace JobPortal.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class addingcustomuserid : DbMigration
     {
         public override void Up()

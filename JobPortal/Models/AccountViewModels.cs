@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Net.Mime;
-using System.Web.UI.WebControls;
 
 namespace JobPortal.Models
 {
