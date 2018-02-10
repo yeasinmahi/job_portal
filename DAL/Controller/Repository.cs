@@ -29,9 +29,9 @@ namespace DAL.Controller
             // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (Expression<Func<T, object>> navigationProperty in navigationProperties)
             {
-                dbQuery = dbQuery.Include<T, object>(navigationProperty);
+                dbQuery = dbQuery.Include(navigationProperty);
             }
-            return dbQuery.AsNoTracking().Where(where).ToList<T>();
+            return dbQuery.AsNoTracking().Where(where).ToList();
         }
         public T GetById(object id)
         {
@@ -49,13 +49,14 @@ namespace DAL.Controller
             Delete(entityToDelete);
             return true;
         }
-        public void Delete(T entityToDelete)
+        public bool Delete(T entityToDelete)
         {
             if (_context.Entry(entityToDelete).State == EntityState.Detached)
             {
                 _dbSet.Attach(entityToDelete);
             }
             _dbSet.Remove(entityToDelete);
+            return true;
         }
         public T Update(T obj)
         {
@@ -76,7 +77,7 @@ namespace DAL.Controller
                 {
                     foreach (var validationError in validationErrors.ValidationErrors)
                     {
-                        System.Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                        Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
                     }
                 }
             }
