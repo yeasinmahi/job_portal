@@ -2,10 +2,11 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using DAL.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using JobPortal.Models;
+using JobPortal.ViewModels;
 
 namespace JobPortal.Controllers
 {
@@ -157,24 +158,23 @@ namespace JobPortal.Controllers
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    string message = "Please confirm your account by clicking < a href =\"" + callbackUrl + "\">here</a>";
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", HttpUtility.UrlEncode(message));
-                    TempData["Message"] = message;
-                    return RedirectToAction("NewAccountCheckEmail");
-                    //return RedirectToAction("Index", "Home");
+                    if (Request.Url != null)
+                    {
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        string htmlStart = "<html><body><div>";
+                        string htmlEnd = "</div></body></html>";
+                        string message = htmlStart+"Please confirm your account by clicking <a href =" + callbackUrl + ">here</a>"+htmlEnd;
+                        await UserManager.SendEmailAsync(user.Id, "Confirm your account", message);
+                        TempData["Message"] = message;
+                    }
+                    //return RedirectToAction("NewAccountCheckEmail");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
-
-        [AllowAnonymous]
-        public ViewResult NewAccountCheckEmail()
-        {
-            return View(TempData["Message"]);
         }
         //
         // GET: /Account/ConfirmEmail

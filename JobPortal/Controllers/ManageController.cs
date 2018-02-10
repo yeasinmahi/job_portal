@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using JobPortal.Models;
+using JobPortal.ViewModels;
 
 namespace JobPortal.Controllers
 {

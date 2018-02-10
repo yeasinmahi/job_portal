@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using DAL.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using JobPortal.Models;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
@@ -15,10 +17,30 @@ namespace JobPortal
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
+
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            var email = new MailMessage();
+            email.To.Add(new MailAddress(message.Destination));  // replace with valid value 
+            email.From = new MailAddress("info.jobportal.future@gmail.com");  // replace with valid value
+            email.Subject = message.Subject;
+            email.Body = message.Body;
+            email.IsBodyHtml = true;
+
+            using (var smtp = new SmtpClient())
+            {
+                var credential = new NetworkCredential
+                {
+                    UserName = "info.jobportal.future@gmail.com", // replace with valid value
+                    Password = "As@123456" // replace with valid value
+                };
+                smtp.Credentials = credential;
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                await smtp.SendMailAsync(email);
+            }
         }
     }
 
@@ -30,7 +52,7 @@ namespace JobPortal
             // Plug in your SMS service here to send a text message.
             //var Twilio = new TwilioRestClient(ConfigurationManager.AppSettings["ACc4f4bca1d53a62f0f6859109feb9f222"], ConfigurationManager.AppSettings["54896fa583939f17b561ae08f6962f4f"]);
             //var result = Twilio.Request()
-                const string accountSid = "ACc4f4bca1d53a62f0f6859109feb9f222";
+            const string accountSid = "ACc4f4bca1d53a62f0f6859109feb9f222";
             const string authToken = "54896fa583939f17b561ae08f6962f4f";
             TwilioClient.Init(accountSid, authToken);
 
@@ -52,7 +74,7 @@ namespace JobPortal
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
@@ -93,7 +115,7 @@ namespace JobPortal
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;

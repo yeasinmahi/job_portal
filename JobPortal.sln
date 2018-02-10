@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobPortal", "JobPortal\JobPortal.csproj", "{075DE993-7B9D-4B91-8E15-5ADDD4A63AF6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D1A3FCB5-5BFD-4064-B780-C31F090DAF75} = {D1A3FCB5-5BFD-4064-B780-C31F090DAF75}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{D1A3FCB5-5BFD-4064-B780-C31F090DAF75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{075DE993-7B9D-4B91-8E15-5ADDD4A63AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{075DE993-7B9D-4B91-8E15-5ADDD4A63AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{075DE993-7B9D-4B91-8E15-5ADDD4A63AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1A3FCB5-5BFD-4064-B780-C31F090DAF75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1A3FCB5-5BFD-4064-B780-C31F090DAF75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1A3FCB5-5BFD-4064-B780-C31F090DAF75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1A3FCB5-5BFD-4064-B780-C31F090DAF75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

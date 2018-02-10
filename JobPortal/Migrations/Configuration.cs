@@ -1,8 +1,10 @@
+using DAL.Models;
+
 namespace JobPortal.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<JobPortal.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
@@ -10,7 +12,7 @@ namespace JobPortal.Migrations
             ContextKey = "JobPortal.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(JobPortal.Models.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
