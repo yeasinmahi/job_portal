@@ -21,32 +21,6 @@ namespace DAL.Models
         public int CustomUserId { get; set; }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDisposable
-    {
-        public ApplicationDbContext()
-            : base("JPConnection", throwIfV1Schema: false)
-        {
-        }
-
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder); // This needs to go before the other rules!
-
-            
-            modelBuilder.Entity<ApplicationUser>().ToTable("User");
-            modelBuilder.Entity<IdentityRole>().ToTable("Role");
-            modelBuilder.Entity<IdentityUserRole>().ToTable("UserRole");
-            modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaim");
-            modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogin");
-
-            
-        }
-    }
-
     public class ApplicationUserRole : IdentityUserRole
     {
         
