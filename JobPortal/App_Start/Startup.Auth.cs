@@ -1,4 +1,5 @@
 ﻿using System;
+using DAL;
 using DAL.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;

@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using DAL.Controller;
 using DAL.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -14,7 +13,7 @@ using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
 
-namespace JobPortal
+namespace DAL
 {
     public class EmailService : IIdentityMessageService
     {
@@ -60,7 +59,7 @@ namespace JobPortal
             var to = new PhoneNumber(message.Destination);
             var messages = MessageResource.Create(
                 to,
-                from: new PhoneNumber("+18064244462"),
+                @from: new PhoneNumber("+18064244462"),
                 body: message.Body);
             string sid = messages.Sid;
             return Task.FromResult(0);
