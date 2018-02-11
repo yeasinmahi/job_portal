@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using DAL.Controller;
+using DAL.Models;
 
 namespace JobPortal.Controllers
 {
@@ -6,6 +9,7 @@ namespace JobPortal.Controllers
     {
         public ActionResult Index()
         {
+            List<ApplicationUser> applicationUsers = (List<ApplicationUser>) DataController<ApplicationUser>.GetAll();
             return View();
         }
 
