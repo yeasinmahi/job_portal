@@ -25,8 +25,10 @@ namespace DAL.Models
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRole");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaim");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogin");
-
-
         }
+        public DbSet<Menu> Menu { get; set; } 
+        public DbSet<SubMenu> SubMenu { get; set; } 
+        public DbSet<MenuItem> MenuItem { get; set; } 
+        public DbSet<RolePermission> RolePermission { get; set; } 
     }
 }

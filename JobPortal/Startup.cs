@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using DAL.Controller;
 
 [assembly: OwinStartup(typeof(JobPortal.Startup))]
 namespace JobPortal
@@ -9,6 +10,7 @@ namespace JobPortal
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            StartupData.AddstartupData();
         }
     }
 }

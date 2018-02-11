@@ -5,23 +5,34 @@ using Others.Enum;
 
 namespace DAL.Controller
 {
-    class StartupData
+    public class StartupData
     {
-        readonly ApplicationDbContext _context = ApplicationDbContext.Create();
-        public void AddRole()
+        private static readonly ApplicationDbContext Context = ApplicationDbContext.Create();
+
+        public static void AddstartupData()
         {
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(_context));
+            if (AddRole())
+            {
+                AddUser();
+            }
+            
+        }
+        private static bool AddRole()
+        {
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(Context));
             if (!roleManager.RoleExists(Enums.ToFriendlyString(Enums.DefaultRole.SystemAdmin)))
             {
                 roleManager.Create(new IdentityRole(Enums.ToFriendlyString(Enums.DefaultRole.SystemAdmin)));
                 roleManager.Create(new IdentityRole(Enums.ToFriendlyString(Enums.DefaultRole.SuperAdmin)));
                 roleManager.Create(new IdentityRole(Enums.ToFriendlyString(Enums.DefaultRole.Admin)));
+                return true;
             }
+            return false;
         }
 
-        public void AddUser()
+        private static void AddUser()
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(Context));
             ApplicationUser applicationUser = new ApplicationUser
             {
                 Email = "yeasinmahi72@gmail.com",
@@ -42,7 +53,7 @@ namespace DAL.Controller
                 UserName = "superadmin",
                 EmailConfirmed = true,
                 PhoneNumber = "008801676272718",
-                CustomUserId = 1,
+                CustomUserId = 2,
                 PhoneNumberConfirmed = true
             };
             result = userManager.Create(superAdmin, "FTL@jp");
