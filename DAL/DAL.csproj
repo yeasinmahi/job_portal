@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="Controller\DataController.cs" />
     <Compile Include="Controller\Repository.cs" />
+    <Compile Include="Controller\StartupData.cs" />
     <Compile Include="IController\IRepository.cs" />
     <Compile Include="Migrations\201802101113584_init.cs" />
     <Compile Include="Migrations\201802101113584_init.Designer.cs">
