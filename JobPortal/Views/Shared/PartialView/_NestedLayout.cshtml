@@ -43,12 +43,18 @@
         }
         else if (viewProperty.ViewPage.Equals(Enums.ViewPage.Index))
         {
-            @RenderBody()
+            
+            @section allScripts
+            {
+                RenderSection("allScripts")
+            }
+            <div class="box-body">
+                @RenderBody()
+            </div>
         }
         else if (viewProperty.ViewPage.Equals(Enums.ViewPage.Details))
         {
             @RenderBody()
         }
-        
     </div>
 }
