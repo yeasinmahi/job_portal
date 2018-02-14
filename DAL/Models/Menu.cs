@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -8,17 +9,28 @@ namespace DAL.Models
     {
         [Key]
         public int Sl { get; set; }
+        [Required]
+        [MaxLength(20)]
         public string Name { get; set; }
+        [DisplayName("Icon Class")]
         public string IconClass { get; set; }
+        [Range(0, 99)]
         public int Order { get; set; }
     }
     public class SubMenu
     {
         [Key]
         public int Sl { get; set; }
+        [MaxLength(20)]
         public string Name { get; set; }
+        [DisplayName("Icon Class")]
+        [MaxLength(20)]
         public string IconClass { get; set; }
+        [DefaultValue(0)]
+        [Range(0, 99)]
         public int Order { get; set; }
+        [Required]
+        [DisplayName("Menu ID")]
         public int MenuId { get; set; }
 
         [ForeignKey("MenuId")]
@@ -29,12 +41,25 @@ namespace DAL.Models
     {
         [Key]
         public int Sl { get; set; }
+        [MaxLength(20)]
         public string Name { get; set; }
+        [DisplayName("Icon Class")]
+        [MaxLength(20)]
         public string IconClass { get; set; }
+        [DefaultValue(0)]
+        [Range(0,99)]
         public int Order { get; set; }
+        [Required]
+        [DisplayName("Menu ID")]
         public int MenuId { get; set; }
+        [Required]
+        [DisplayName("Sub-Menu ID")]
         public int SubMenuId { get; set; }
+        [Required]
+        [MaxLength(20)]
         public string ControllerName { get; set; }
+        [Required]
+        [MaxLength(20)]
         public string ActionName { get; set; }
 
         [ForeignKey("SubMenuId")]
@@ -45,7 +70,10 @@ namespace DAL.Models
     {
         [Key]
         public int Sl { get; set; }
+        [Required]
         public string RoleId { get; set; }
+        [Required]
+        [DisplayName("Menu ID")]
         public int MenuItemId { get; set; }
         public bool CanAdd { get; set; }
         public bool CanEdit { get; set; }

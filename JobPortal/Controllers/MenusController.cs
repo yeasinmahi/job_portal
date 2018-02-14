@@ -1,12 +1,20 @@
 ﻿using System.Net;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using DAL.Controller;
-using DAL.Models;
+using Others.Enum;
+using Menu = DAL.Models.Menu;
+using Others.UI;
 
 namespace JobPortal.Controllers
 {
     public class MenusController : Controller
     {
+        
+        public MenusController()
+        {
+            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Index, "Menu");
+        }
         // GET: Menus
         public ActionResult Index()
         {
@@ -31,6 +39,14 @@ namespace JobPortal.Controllers
         // GET: Menus/Create
         public ActionResult Create()
         {
+            ViewBag.ViewProperty = new ViewProperty()
+            {
+                Title = "Create",
+                ViewPage = Enums.ViewPage.Create,
+                ControllerName = "Menu"
+
+            };
+            
             return View();
         }
 

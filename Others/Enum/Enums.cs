@@ -27,5 +27,14 @@
             SystemAdmin,
             SuperAdmin
         }
+
+        public enum ViewPage
+        {
+            Create,
+            Edit,
+            Delete,
+            Index,
+            Details
+        }
     }
 }

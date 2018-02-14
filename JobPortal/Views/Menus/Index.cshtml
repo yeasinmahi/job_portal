@@ -1,17 +1,9 @@
 ﻿@model IEnumerable<DAL.Models.Menu>
-
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Layout = "~/Views/Shared/PartialView/_NestedLayout.cshtml";
+
 }
-
-
-
-<section >
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-</section>
 <section class="content">
     <table class="table">
         <tr>

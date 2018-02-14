@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -114,6 +115,14 @@
     <Compile Include="Migrations\201802110928586_adding menu.Designer.cs">
       <DependentUpon>201802110928586_adding menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802120620174_change menu property.cs" />
+    <Compile Include="Migrations\201802120620174_change menu property.Designer.cs">
+      <DependentUpon>201802120620174_change menu property.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802120627503_change menu property2.cs" />
+    <Compile Include="Migrations\201802120627503_change menu property2.Designer.cs">
+      <DependentUpon>201802120627503_change menu property2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -131,6 +140,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802110928586_adding menu.resx">
       <DependentUpon>201802110928586_adding menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802120620174_change menu property.resx">
+      <DependentUpon>201802120620174_change menu property.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802120627503_change menu property2.resx">
+      <DependentUpon>201802120627503_change menu property2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
