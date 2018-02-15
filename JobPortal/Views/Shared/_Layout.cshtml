@@ -28,10 +28,6 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="../../Content/daterangepicker.css">
     <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="../../Content/jquery.dataTables.css">
-    <link href="../../Content/dataTables.responsive.css" rel="stylesheet" type="text/css" media="screen" />
-
-
     <link rel="stylesheet" href="../../Content/bootstrap3-wysihtml5.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,6 +39,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     @*@Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")*@
+    @RenderSection("content", required: false)
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -544,6 +541,6 @@
     <script src="../../Scripts/demo.js"></script>
     @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")*@
-    @RenderSection("allScripts", required: false)
+    @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -15,9 +15,9 @@
         </h1>
     </section>
     <div class="box box-primary">
-        <div class="box-header with-border">
+        @*<div class="box-header with-border">
             <h3 class="box-title">@viewProperty.Title</h3>
-        </div>
+        </div>*@
         @if (viewProperty.ViewPage.Equals(Enums.ViewPage.Create))
         {
             using (Html.BeginForm())
@@ -44,6 +44,11 @@
         else if (viewProperty.ViewPage.Equals(Enums.ViewPage.Index))
         {
             <div class="box-body">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary btn-sm" aria-expanded="false" onclick="location.href = '@Url.Action("Create", @viewProperty.ControllerName + "s")'">Add @viewProperty.ControllerName</button>
+                </div>
+                <br />
+                <br />
                 @RenderBody()
             </div>
 
@@ -53,7 +58,10 @@
             @RenderBody()
         }
     </div>
-    @section allScripts{
-        @RenderSection("allScripts",false)
+    @section content{
+        @RenderSection("content", false)
+    }
+    @section scripts{
+        @RenderSection("scripts", false)
     }
 }

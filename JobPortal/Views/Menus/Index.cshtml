@@ -2,11 +2,13 @@
 @{
 
     Layout = "~/Views/Shared/PartialView/_NestedLayout.cshtml";
-
+    int rowNo = 0;
 }
-<table id="example2" class="table table-striped dt-responsive display" cellspacing="0" width="100%">
+<table id="myTable" class="table table-striped dt-responsive" width=100%>
     <thead>
     <tr>
+        <th>SL</th>
+        <th>Action</th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -16,13 +18,26 @@
         <th>
             @Html.DisplayNameFor(model => model.Order)
         </th>
-        <th>Options</th>
     </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @(rowNo += 1)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Details", "Details", new { id = item.Sl })</li>
+                            <li>@Html.ActionLink("Edit", "Edit", new { id = item.Sl })</li>
+                            <li>@Html.ActionLink("Delete", "Delete", new { id = item.Sl })</li>
+                        </ul>
+                    </div>
+                </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
@@ -32,24 +47,20 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Order)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new {id = item.Sl}) |
-                    @Html.ActionLink("Details", "Details", new {id = item.Sl}) |
-                    @Html.ActionLink("Delete", "Delete", new {id = item.Sl})
-                </td>
             </tr>
         }
     </tbody>
 </table>
-@section allScripts
+@section content
 {
-    <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
-    <script src="../../Scripts/jquery.dataTables.min.js"></script>
-    <script src="../../Scripts/dataTables.responsive.min.js" type="text/javascript"></script>
-    <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
+    @Styles.Render("~/Content/dataTable");
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/dataTable");
     <script>
         $(document).ready(function () {
-            $('#example2').DataTable();
+            $('#myTable').DataTable();
         });
     </script>
 }
