@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<DAL.Models.Menu>
 @{
-
     Layout = "~/Views/Shared/PartialView/_NestedLayout.cshtml";
     int rowNo = 0;
 }
@@ -53,13 +52,13 @@
 </table>
 @section content
 {
-    @Styles.Render("~/Content/dataTable");
+    @Styles.Render("~/Content/dataTable")
 }
 @section scripts
 {
-    @Scripts.Render("~/bundles/dataTable");
+    @Scripts.Render("~/bundles/dataTable")
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#myTable').DataTable();
         });
     </script>
