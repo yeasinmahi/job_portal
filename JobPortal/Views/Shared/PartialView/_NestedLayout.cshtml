@@ -35,11 +35,34 @@
         }
         else if (viewProperty.ViewPage.Equals(Enums.ViewPage.Edit))
         {
-            @RenderBody()
+            using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="box-body">
+                    @RenderBody()
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary pull-right">Update</button>
+                    @Html.ActionLink("Back to List", "Index", null, null, new { @class = "btn btn-primary pull-left" })
+                </div>
+            }
         }
         else if (viewProperty.ViewPage.Equals(Enums.ViewPage.Delete))
         {
-            @RenderBody()
+            using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="box-body">
+                    <h3>Are you sure you want to delete this?</h3>
+                    @RenderBody()
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary pull-right">Delete</button>
+                    @Html.ActionLink("Back to List", "Index", null, null, new { @class = "btn btn-primary pull-left" })
+                </div>
+            }
         }
         else if (viewProperty.ViewPage.Equals(Enums.ViewPage.Index))
         {
@@ -55,7 +78,12 @@
         }
         else if (viewProperty.ViewPage.Equals(Enums.ViewPage.Details))
         {
+            <br/>
             @RenderBody()
+            <div class="box-footer">
+                @Html.ActionLink("Edit", "Edit", null, new { id = Model.Sl }, new { @class = "btn btn-primary pull-right" })
+                @Html.ActionLink("Back to List", "Index", null, null, new { @class = "btn btn-primary pull-left" })
+            </div>
         }
     </div>
     @section content{

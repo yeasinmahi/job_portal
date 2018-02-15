@@ -18,12 +18,14 @@ namespace JobPortal.Controllers
         // GET: Menus
         public ActionResult Index()
         {
+            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Index, "Menu");
             return View(DataController<Menu>.GetAll());
         }
 
         // GET: Menus/Details/5
         public ActionResult Details(int? id)
         {
+            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Details, "Menu");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,14 +41,8 @@ namespace JobPortal.Controllers
         // GET: Menus/Create
         public ActionResult Create()
         {
-            ViewBag.ViewProperty = new ViewProperty()
-            {
-                Title = "Create",
-                ViewPage = Enums.ViewPage.Create,
-                ControllerName = "Menu"
+            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Create, "Menu");
 
-            };
-            
             return View();
         }
 
@@ -69,6 +65,7 @@ namespace JobPortal.Controllers
         // GET: Menus/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Edit, "Menu");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -99,6 +96,7 @@ namespace JobPortal.Controllers
         // GET: Menus/Delete/5
         public ActionResult Delete(int? id)
         {
+            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Delete, "Menu");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
