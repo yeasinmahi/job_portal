@@ -1,0 +1,41 @@
+﻿@model DAL.Models.MenuItem
+
+@{
+    Layout = "~/Views/Shared/PartialView/_NestedLayout.cshtml";
+}
+
+<div class="form-group">
+    @Html.LabelFor(model => model.MenuId, "MenuId", htmlAttributes: new { @class = "control-label" })
+    @Html.DropDownList("MenuId", null, htmlAttributes: new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.MenuId, "", new { @class = "text-danger" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.SubMenuId, "SubMenuId", htmlAttributes: new { @class = "control-label" })
+    @Html.DropDownList("SubMenuId", null, htmlAttributes: new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.SubMenuId, "", new { @class = "text-danger" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = @Html.DisplayNameFor(n => n.Name) } })
+    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.ControllerName, htmlAttributes: new { @class = "control-label" })
+    @Html.EditorFor(model => model.ControllerName, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.ControllerName, "", new { @class = "text-danger" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.ActionName, htmlAttributes: new { @class = "control-label" })
+    @Html.EditorFor(model => model.ActionName, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.ActionName, "", new { @class = "text-danger" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.IconClass, htmlAttributes: new { @class = "control-label" })
+    @Html.EditorFor(model => model.IconClass, new { htmlAttributes = new { @class = "form-control", @placeholder = @Html.DisplayNameFor(n => n.IconClass) } })
+    @Html.ValidationMessageFor(model => model.IconClass, "", new { @class = "text-danger" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Order, htmlAttributes: new { @class = "control-label" })
+    @Html.EditorFor(model => model.Order, new { htmlAttributes = new { @class = "form-control", @placeholder = @Html.DisplayNameFor(n => n.Order) } })
+    @Html.ValidationMessageFor(model => model.Order, "", new { @class = "text-danger" })
+</div>

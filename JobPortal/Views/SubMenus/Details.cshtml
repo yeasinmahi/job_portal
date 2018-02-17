@@ -1,0 +1,42 @@
+﻿@model DAL.Models.SubMenu
+
+@{
+    Layout = "~/Views/Shared/PartialView/_NestedLayout.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Menu.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Menu.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IconClass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IconClass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order)
+        </dd>
+
+    </dl>
+</div>

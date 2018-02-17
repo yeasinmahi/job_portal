@@ -1,0 +1,112 @@
+﻿@model IEnumerable<DAL.Models.MenuItem>
+@{
+    Layout = "~/Views/Shared/PartialView/_NestedLayout.cshtml";
+    int rowNo = 0;
+}
+<table id="myTable" class="table table-striped dt-responsive" width=100%>
+    <thead>
+        <tr>
+            <th>SL</th>
+            <th>Action</th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubMenuId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IconClass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ControllerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActionName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @(rowNo += 1)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Details", "Details", new { id = item.Sl })</li>
+                            <li>@Html.ActionLink("Edit", "Edit", new { id = item.Sl })</li>
+                            <li><a id="deleteItem" href="#" class="deleteItem" data-target="#modal-delete" data-toggle="modal" data-path="@Url.Action("Delete", "MenuItems", new {id = @item.Sl})">Delete</a></li>
+                            @*<li>@Html.ActionLink("Delete", "#", new {id = item.Sl}, new {data_toggle = "modal", data_target = "#modal-default"})</li>*@
+                        </ul>
+                    </div>
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubMenuId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IconClass)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ControllerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActionName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section content
+{
+    @Styles.Render("~/Content/dataTable")
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/dataTable")
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                'paging': true,
+                'lengthChange': true,
+                'searching': true,
+                'ordering': true,
+                'info': true,
+                'autoWidth': true,
+                'processing': true
+            });
+        });
+    </script>
+    <script>
+        var path_to_delete;
+
+        $(".deleteItem").click(function (e) {
+            path_to_delete = $(this).data('path');
+            $('#deleteForm').attr('action', path_to_delete);
+        });
+        $('#btnContinueDelete').click(function () {
+            document.getElementById("form1").submit();
+            window.location = path_to_delete;
+        });
+    </script>
+}
