@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Web.Mvc;
 using DAL.Controller;
+using JobPortal.Controllers.Common;
 using Others.Enum;
 using Menu = DAL.Models.Menu;
 

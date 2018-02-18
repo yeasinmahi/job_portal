@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Others.Enum;
 
-namespace JobPortal.Controllers
+namespace JobPortal.Controllers.Common
 {
     public abstract class BaseController : Controller
     {

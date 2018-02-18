@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using DAL.Models;
 using Others.Enum;
 using DAL.Controller;
+using JobPortal.Controllers.Common;
 
 namespace JobPortal.Controllers
 {

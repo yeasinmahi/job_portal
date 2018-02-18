@@ -2,7 +2,7 @@
 using Others.Enum;
 using Others.UI;
 
-namespace JobPortal.Controllers
+namespace JobPortal.Controllers.Common
 {
     public class PageController : Controller
     {

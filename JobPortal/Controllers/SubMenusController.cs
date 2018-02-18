@@ -4,6 +4,7 @@ using System.Net;
 using System.Web.Mvc;
 using DAL.Models;
 using DAL.Controller;
+using JobPortal.Controllers.Common;
 
 namespace JobPortal.Controllers
 {
