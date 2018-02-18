@@ -10,15 +10,12 @@ namespace JobPortal.Controllers
 {
     public class SubMenusController : BaseController
     {
-        public SubMenusController() : base("Sub Menu")
-        {
-            
-        }
+        public SubMenusController() : base("Sub Menu"){}
 
-        public ActionResult GetSubMenusByMenuId()
+        public ActionResult GetSubMenusByMenuId(int menuId)
         {
-            int menuId;
-            Int32.TryParse(Request["MenuId"], out menuId);
+            //int menuId;
+            //Int32.TryParse(Request["MenuId"], out menuId);
             var s = from p in DataController<SubMenu>.Get(x => x.MenuId.Equals(menuId)).AsEnumerable()
                     select new SubMenu { Sl = p.Sl, Name = p.Name };
             return Json(s, JsonRequestBehavior.AllowGet);

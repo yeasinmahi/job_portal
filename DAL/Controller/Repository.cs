@@ -28,7 +28,6 @@ namespace DAL.Controller
             {
                 return _dbSet.ToList();
             }
-            
         }
 
         public IEnumerable<T> Get(Func<T, bool> where,params Expression<Func<T, object>>[] navigationProperties)
