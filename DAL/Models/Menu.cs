@@ -52,9 +52,8 @@ namespace DAL.Models
         [Required]
         [DisplayName("Menu ID")]
         public int MenuId { get; set; }
-        [Required]
         [DisplayName("Sub-Menu ID")]
-        public int SubMenuId { get; set; }
+        public int? SubMenuId { get; set; }
         [Required]
         [MaxLength(20)]
         public string ControllerName { get; set; }
@@ -62,8 +61,8 @@ namespace DAL.Models
         [MaxLength(20)]
         public string ActionName { get; set; }
 
-        [ForeignKey("SubMenuId")]
-        public virtual SubMenu SubMenu { get; set; }
+        [ForeignKey("MenuId")]
+        public virtual Menu Menu { get; set; }
     }
 
     public class RolePermission
