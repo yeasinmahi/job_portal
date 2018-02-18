@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using DAL.Models;
 using Others.Enum;
@@ -33,7 +29,7 @@ namespace JobPortal.Controllers
         public ActionResult Index()
         {
             ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Index, "SubMenu");
-            return View(Json(DataController<SubMenu>.GetAll(), JsonRequestBehavior.AllowGet));
+            return View(DataController<SubMenu>.GetAll());
         }
 
         // GET: SubMenus/Details/5
@@ -107,22 +103,6 @@ namespace JobPortal.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.MenuId = new SelectList(DataController<Menu>.GetAll(), "Sl", "Name", subMenu.MenuId);
-            return View(subMenu);
-        }
-
-        // GET: SubMenus/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Delete, "SubMenu");
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SubMenu subMenu = DataController<SubMenu>.GetById(id);
-            if (subMenu == null)
-            {
-                return HttpNotFound();
-            }
             return View(subMenu);
         }
 

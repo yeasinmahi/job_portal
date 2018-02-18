@@ -1,10 +1,8 @@
 ﻿using System.Net;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using DAL.Controller;
 using Others.Enum;
 using Menu = DAL.Models.Menu;
-using Others.UI;
 
 namespace JobPortal.Controllers
 {
@@ -94,20 +92,20 @@ namespace JobPortal.Controllers
         }
 
         // GET: Menus/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Delete, "Menu");
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Menu menu = DataController<Menu>.GetById(id);
-            if (menu == null)
-            {
-                return HttpNotFound();
-            }
-            return View(menu);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Delete, "Menu");
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Menu menu = DataController<Menu>.GetById(id);
+        //    if (menu == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(menu);
+        //}
 
         // POST: Menus/Delete/5
         [HttpPost, ActionName("Delete")]

@@ -11,73 +11,104 @@ namespace DAL.Controller
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private ApplicationDbContext _context;
+        private static ApplicationDbContext _context;
         private readonly DbSet<T> _dbSet;
+        private readonly object _lockObj=new object();
         public Repository()
         {
-            _context = ApplicationDbContext.Create();
+            if (_context==null)
+            {
+                _context = ApplicationDbContext.Create();
+            }
             _dbSet = _context.Set<T>();
         }
         public IEnumerable<T> GetAll()
         {
-            return _dbSet.ToList();
+            lock (_lockObj)
+            {
+                return _dbSet.ToList();
+            }
+            
         }
 
         public IEnumerable<T> Get(Func<T, bool> where,params Expression<Func<T, object>>[] navigationProperties)
         {
-            IQueryable<T> dbQuery = _context.Set<T>();
-            // ReSharper disable once LoopCanBeConvertedToQuery
-            foreach (Expression<Func<T, object>> navigationProperty in navigationProperties)
+            lock (_lockObj)
             {
-                dbQuery = dbQuery.Include(navigationProperty);
+                IQueryable<T> dbQuery = _context.Set<T>();
+                // ReSharper disable once LoopCanBeConvertedToQuery
+                foreach (Expression<Func<T, object>> navigationProperty in navigationProperties)
+                {
+                    dbQuery = dbQuery.Include(navigationProperty);
+                }
+                return dbQuery.AsNoTracking().Where(where).ToList();
             }
-            return dbQuery.AsNoTracking().Where(where).ToList();
         }
         public T GetById(object id)
         {
-            return _dbSet.Find(id);
+            lock (_lockObj)
+            {
+                return _dbSet.Find(id);
+            }
         }
         public T Insert(T obj)
         {
-            _dbSet.Add(obj);
-            Save();
-            return obj;
+            lock (_lockObj)
+            {
+                _dbSet.Add(obj);
+                Save();
+                return obj;
+            }
         }
         public bool Delete(object id)
         {
-            T entityToDelete = _dbSet.Find(id);
-            Delete(entityToDelete);
-            return true;
+            lock (_lockObj)
+            {
+                T entityToDelete = _dbSet.Find(id);
+                Delete(entityToDelete);
+                return true;
+            }
         }
         public bool Delete(T entityToDelete)
         {
-            if (_context.Entry(entityToDelete).State == EntityState.Detached)
+            lock (_lockObj)
             {
-                _dbSet.Attach(entityToDelete);
+                if (_context.Entry(entityToDelete).State == EntityState.Detached)
+                {
+                    _dbSet.Attach(entityToDelete);
+                }
+                _dbSet.Remove(entityToDelete);
+                Save();
+                return true;
             }
-            _dbSet.Remove(entityToDelete);
-            return true;
         }
         public T Update(T obj)
         {
-            _dbSet.Attach(obj);
-            _context.Entry(obj).State = EntityState.Modified;
-            Save();
-            return obj;
+            lock (_lockObj)
+            {
+                _dbSet.Attach(obj);
+                _context.Entry(obj).State = EntityState.Modified;
+                Save();
+                return obj;
+            }
         }
         public void Save()
         {
-            try
+            lock (_lockObj)
             {
-                _context.SaveChanges();
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                try
                 {
-                    foreach (var validationError in validationErrors.ValidationErrors)
+                    _context.SaveChanges();
+                }
+                catch (DbEntityValidationException dbEx)
+                {
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
                     {
-                        Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName,
+                                validationError.ErrorMessage);
+                        }
                     }
                 }
             }
