@@ -10,7 +10,7 @@ namespace JobPortal.Controllers
 {
     public class SubMenusController : BaseController
     {
-        public SubMenusController() : base("Sub Menu")
+        public SubMenusController() : base("SubMenu")
         {
             
         }
