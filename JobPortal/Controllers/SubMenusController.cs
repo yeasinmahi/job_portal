@@ -19,11 +19,21 @@ namespace JobPortal.Controllers
             ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Index, "SubMenu");
         }
 
+        public ActionResult GetSubMenusByMenuId()
+        {
+            int menuId;
+            Int32.TryParse(Request["MenuId"], out menuId);
+            var s = from p in DataController<SubMenu>.GetAll().AsEnumerable()
+                    where p.MenuId == menuId
+                    select new SubMenu { Sl = p.Sl, Name = p.Name };
+            return Json(s, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: SubMenus
         public ActionResult Index()
         {
             ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Index, "SubMenu");
-            return View(DataController<SubMenu>.GetAll());
+            return View(Json(DataController<SubMenu>.GetAll(), JsonRequestBehavior.AllowGet));
         }
 
         // GET: SubMenus/Details/5
