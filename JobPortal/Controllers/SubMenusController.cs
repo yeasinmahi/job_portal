@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using DAL.Models;
@@ -10,23 +9,9 @@ namespace JobPortal.Controllers
 {
     public class SubMenusController : BaseController
     {
-<<<<<<< HEAD
         public SubMenusController() : base("Sub Menu"){}
-=======
-        public SubMenusController() : base("SubMenu")
-        {
-            
-        }
->>>>>>> 21fd1442a7ab27dc9125a44675f312aef3e69a4a
 
-        public ActionResult GetSubMenusByMenuId(int menuId)
-        {
-            //int menuId;
-            //Int32.TryParse(Request["MenuId"], out menuId);
-            var s = from p in DataController<SubMenu>.Get(x => x.MenuId.Equals(menuId)).AsEnumerable()
-                    select new SubMenu { Sl = p.Sl, Name = p.Name };
-            return Json(s, JsonRequestBehavior.AllowGet);
-        }
+        
 
         // GET: SubMenus
         public override ActionResult Index()

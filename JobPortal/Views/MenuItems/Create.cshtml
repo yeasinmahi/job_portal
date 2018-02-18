@@ -45,7 +45,7 @@
     <script>
         function LoadSubMenu() {
             $.ajax({
-                url: '/SubMenus/GetSubMenusByMenuId',
+                url: '/Page/GetSubMenusByMenuId',
                 method: 'POST',
                 data: {
                     MenuId: $('#ddl_menu').val(),

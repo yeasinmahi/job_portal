@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
+using DAL.Controller;
+using DAL.Models;
 using Others.Enum;
 using Others.UI;
 
@@ -32,5 +35,12 @@ namespace JobPortal.Controllers.Common
             }
             return viewProperty;
         }
+        public ActionResult GetSubMenusByMenuId(int menuId)
+        {
+            var s = from p in DataController<SubMenu>.Get(x => x.MenuId.Equals(menuId)).AsEnumerable()
+                    select new SubMenu { Sl = p.Sl, Name = p.Name };
+            return Json(s, JsonRequestBehavior.AllowGet);
+        }
     }
+    
 }
