@@ -3,39 +3,37 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using DAL.Models;
-using Others.Enum;
 using DAL.Controller;
 
 namespace JobPortal.Controllers
 {
-    public class SubMenusController : Controller
+    public class SubMenusController : BaseController
     {
-        public SubMenusController()
+        public SubMenusController() : base("Sub Menu")
         {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Index, "SubMenu");
+            
         }
 
         public ActionResult GetSubMenusByMenuId()
         {
             int menuId;
             Int32.TryParse(Request["MenuId"], out menuId);
-            var s = from p in DataController<SubMenu>.GetAll().AsEnumerable()
-                    where p.MenuId == menuId
+            var s = from p in DataController<SubMenu>.Get(x => x.MenuId.Equals(menuId)).AsEnumerable()
                     select new SubMenu { Sl = p.Sl, Name = p.Name };
             return Json(s, JsonRequestBehavior.AllowGet);
         }
 
         // GET: SubMenus
-        public ActionResult Index()
+        public override ActionResult Index()
         {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Index, "SubMenu");
+            base.Index();
             return View(DataController<SubMenu>.GetAll());
         }
 
         // GET: SubMenus/Details/5
-        public ActionResult Details(int? id)
+        public override ActionResult Details(int? id)
         {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Details, "SubMenu");
+            base.Details(id);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -49,10 +47,10 @@ namespace JobPortal.Controllers
         }
 
         // GET: SubMenus/Create
-        public ActionResult Create()
+        public override ActionResult Create()
         {
+            base.Create();
             ViewBag.MenuId = new SelectList(DataController<Menu>.GetAll(), "Sl", "Name");
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Create, "SubMenu");
             return View();
         }
 
@@ -74,9 +72,9 @@ namespace JobPortal.Controllers
         }
 
         // GET: SubMenus/Edit/5
-        public ActionResult Edit(int? id)
+        public override ActionResult Edit(int? id)
         {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Edit, "SubMenu");
+            base.Edit(id);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,7 +107,7 @@ namespace JobPortal.Controllers
         // POST: SubMenus/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public override ActionResult Delete(int id)
         {
             SubMenu subMenu = DataController<SubMenu>.GetById(id);
             DataController<SubMenu>.Delete(subMenu);
