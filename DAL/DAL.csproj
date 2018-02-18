@@ -123,6 +123,14 @@
     <Compile Include="Migrations\201802120627503_change menu property2.Designer.cs">
       <DependentUpon>201802120627503_change menu property2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802180835557_comment virtual identityrole in menu.cs" />
+    <Compile Include="Migrations\201802180835557_comment virtual identityrole in menu.Designer.cs">
+      <DependentUpon>201802180835557_comment virtual identityrole in menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802180838105_add virtual identityrole in menu.cs" />
+    <Compile Include="Migrations\201802180838105_add virtual identityrole in menu.Designer.cs">
+      <DependentUpon>201802180838105_add virtual identityrole in menu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -146,6 +154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802120627503_change menu property2.resx">
       <DependentUpon>201802120627503_change menu property2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802180835557_comment virtual identityrole in menu.resx">
+      <DependentUpon>201802180835557_comment virtual identityrole in menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802180838105_add virtual identityrole in menu.resx">
+      <DependentUpon>201802180838105_add virtual identityrole in menu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

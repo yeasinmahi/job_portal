@@ -1,0 +1,59 @@
+﻿@model DAL.Models.RolePermission
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/PartialView/_NestedLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RolePermission</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MenuItem.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MenuItem.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoleId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoleId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CanAdd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CanAdd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CanEdit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CanEdit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CanDelete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CanDelete)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Sl }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
