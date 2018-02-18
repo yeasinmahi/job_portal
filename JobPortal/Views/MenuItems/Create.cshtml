@@ -5,13 +5,13 @@
 }
 
 <div class="form-group">
-    @Html.LabelFor(model => model.MenuId, "MenuId", htmlAttributes: new { @class = "control-label" })
-    @Html.DropDownList("MenuId", null, "Select Menu", htmlAttributes: new { @class = "form-control", @id = "ddl_menu", @name = "ddl_menu", @onchange = "LoadSubMenu();", @required = true })
+    @Html.LabelFor(model => model.MenuId, htmlAttributes: new { @class = "control-label" })
+    @Html.DropDownList("MenuId", null, "Select Menu", htmlAttributes: new { @class = "form-control", @id = "ddl_menu", @name = "ddl_menu", @onchange = "LoadSubMenu();"})
     @Html.ValidationMessageFor(model => model.MenuId, "", new { @class = "text-danger" })
 </div>
 <div class="form-group">
-    @Html.LabelFor(model => model.SubMenuId, "SubMenuId", htmlAttributes: new { @class = "control-label" })
-    @Html.DropDownList("SubMenuId", null, "Select SubMenu", htmlAttributes: new { @class = "form-control", @id = "ddl_subMenu", @name = "ddl_subMenu", @required = true })
+    @Html.LabelFor(model => model.SubMenuId, htmlAttributes: new { @class = "control-label" })
+    @Html.DropDownList("SubMenuId", null, "Select SubMenu", htmlAttributes: new { @class = "form-control", @id = "ddl_subMenu", @name = "ddl_subMenu" })
     @Html.ValidationMessageFor(model => model.SubMenuId, "", new { @class = "text-danger" })
 </div>
 <div class="form-group">
