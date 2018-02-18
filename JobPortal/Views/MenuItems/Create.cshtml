@@ -40,29 +40,32 @@
     @Html.ValidationMessageFor(model => model.Order, "", new { @class = "text-danger" })
 </div>
 
-<script>
-    function LoadSubMenu() {
-        $.ajax({
-            url: '/SubMenus/GetSubMenusByMenuId',
-            method: 'POST',
-            data: {
-                MenuId: $('#ddl_menu').val(),
-            },
-            cache: false,
-            error: function () {
-                alert("An error occoured!");
-            },
-            success: function (response) {
-                $('#ddl_subMenu').empty();
-                $('#ddl_subMenu').append($('<option>', {
-                    value: '',
-                    text: 'Select SubMenu'
-                }));
-                for (var i = 0; i < response.length; i++) {
-                    var opt = new Option(response[i].Name, response[i].Sl);
-                    $('#ddl_subMenu').append(opt);
+@section scripts
+{
+    <script>
+        function LoadSubMenu() {
+            $.ajax({
+                url: '/SubMenus/GetSubMenusByMenuId',
+                method: 'POST',
+                data: {
+                    MenuId: $('#ddl_menu').val(),
+                },
+                cache: false,
+                error: function () {
+                    alert("An error occoured!");
+                },
+                success: function (response) {
+                    $('#ddl_subMenu').empty();
+                    $('#ddl_subMenu').append($('<option>', {
+                        value: '',
+                        text: 'Select SubMenu'
+                    }));
+                    for (var i = 0; i < response.length; i++) {
+                        var opt = new Option(response[i].Name, response[i].Sl);
+                        $('#ddl_subMenu').append(opt);
+                    }
                 }
-            }
-        });
-    };
-</script>
+            });
+        };
+    </script>
+}
