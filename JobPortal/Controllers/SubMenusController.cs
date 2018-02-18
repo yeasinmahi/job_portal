@@ -10,7 +10,14 @@ namespace JobPortal.Controllers
 {
     public class SubMenusController : BaseController
     {
+<<<<<<< HEAD
         public SubMenusController() : base("Sub Menu"){}
+=======
+        public SubMenusController() : base("SubMenu")
+        {
+            
+        }
+>>>>>>> 21fd1442a7ab27dc9125a44675f312aef3e69a4a
 
         public ActionResult GetSubMenusByMenuId(int menuId)
         {
