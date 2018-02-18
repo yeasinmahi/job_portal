@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Web.Mvc;
 using DAL.Models;
 using DAL.Controller;
@@ -41,7 +40,7 @@ namespace JobPortal.Controllers
         {
             base.Create();
             ViewBag.MenuId = new SelectList(DataController<Menu>.GetAll(), "Sl", "Name");
-            return View();
+            return View("Edit");
         }
 
         // POST: SubMenus/Create
@@ -58,7 +57,7 @@ namespace JobPortal.Controllers
             }
 
             ViewBag.MenuId = new SelectList(DataController<Menu>.GetAll(), "Sl", "Name", subMenu.MenuId);
-            return View(subMenu);
+            return View("Edit",subMenu);
         }
 
         // GET: SubMenus/Edit/5

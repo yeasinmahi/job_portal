@@ -41,7 +41,7 @@ namespace JobPortal.Controllers
         public override ActionResult Create()
         {
             base.Create();
-            return View();
+            return View("Edit");
         }
 
         // POST: Menus/Create
@@ -57,7 +57,7 @@ namespace JobPortal.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(menu);
+            return View("Edit",menu);
         }
 
         // GET: Menus/Edit/5

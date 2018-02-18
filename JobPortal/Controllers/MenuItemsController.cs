@@ -43,7 +43,7 @@ namespace JobPortal.Controllers
             base.Create();
             ViewBag.MenuId = new SelectList(DataController<Menu>.GetAll(), "Sl", "Name");
             ViewBag.SubMenuId = new SelectList(DataController<SubMenu>.GetAll(), "Sl", "Name");
-            return View();
+            return View("Edit");
         }
 
         // POST: MenuItems/Create
@@ -60,7 +60,7 @@ namespace JobPortal.Controllers
             }
             ViewBag.MenuId = new SelectList(DataController<Menu>.GetAll(), "Sl", "Name", menuItem.MenuId);
             ViewBag.SubMenuId = new SelectList(DataController<SubMenu>.GetAll(), "Sl", "Name", menuItem.SubMenuId);
-            return View(menuItem);
+            return View("Edit",menuItem);
         }
 
         // GET: MenuItems/Edit/5
