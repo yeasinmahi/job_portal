@@ -9,11 +9,7 @@ namespace JobPortal.Controllers
 {
     public class MenusController : BaseController
     {
-        
-        public MenusController() : base("Menu")
-        {
-
-        }
+        public MenusController() : base("Menu"){}
         // GET: Menus
         public override ActionResult Index()
         {
@@ -51,6 +47,7 @@ namespace JobPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Sl,Name,IconClass,Order")] Menu menu)
         {
+            base.Create();
             if (ModelState.IsValid)
             {
                 DataController<Menu>.Insert(menu);
@@ -84,6 +81,7 @@ namespace JobPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Sl,Name,IconClass,Order")] Menu menu)
         {
+            base.Edit(menu.Sl);
             if (ModelState.IsValid)
             {
                 DataController<Menu>.Update(menu);

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using DAL.Controller;
 using DAL.Models;
@@ -35,11 +36,25 @@ namespace JobPortal.Controllers.Common
             }
             return viewProperty;
         }
-        public ActionResult GetSubMenusByMenuId(int menuId)
+        public ActionResult GetJsonSubMenusByMenuId(int menuId)
         {
             var s = from p in DataController<SubMenu>.Get(x => x.MenuId.Equals(menuId)).AsEnumerable()
                     select new SubMenu { Sl = p.Sl, Name = p.Name };
             return Json(s, JsonRequestBehavior.AllowGet);
+        }
+
+        public static List<Menu> GetMenus()
+        {
+            return DataController<Menu>.GetAll().ToList();
+        }
+
+        public static List<SubMenu> GetSubMenusByMenuId(int menuId)
+        {
+            return DataController<SubMenu>.Get(x => x.MenuId.Equals(menuId)).ToList();
+        }
+        public static List<SubMenu> GetMenuItems(int menuId)
+        {
+            return DataController<SubMenu>.Get(x => x.MenuId.Equals(menuId)).ToList();
         }
     }
     

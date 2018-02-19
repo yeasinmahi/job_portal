@@ -3,7 +3,7 @@
 @{
     Layout = "~/Views/Shared/PartialView/_NestedLayout.cshtml";
 }
-@Html.HiddenFor(model=>model.Sl);
+@Html.HiddenFor(model=>model.Sl)
 <div class="form-group">
     @Html.LabelFor(model => model.MenuId, "MenuId", htmlAttributes: new { @class = "control-label" })
     @Html.DropDownList("MenuId", null, "Select Menu", htmlAttributes: new { @class = "form-control", @id = "ddl_menu", @name = "ddl_menu", @onchange = "LoadSubMenu();", @required = true })
@@ -45,7 +45,7 @@
     <script>
         function LoadSubMenu() {
             $.ajax({
-                url: '/Page/GetSubMenusByMenuId',
+                url: '/Page/GetJsonSubMenusByMenuId',
                 method: 'POST',
                 data: {
                     MenuId: $('#ddl_menu').val(),

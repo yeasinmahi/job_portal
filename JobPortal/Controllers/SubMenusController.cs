@@ -9,9 +9,7 @@ namespace JobPortal.Controllers
     public class SubMenusController : BaseController
     {
         public SubMenusController() : base("SubMenu"){}
-
         
-
         // GET: SubMenus
         public override ActionResult Index()
         {
@@ -50,6 +48,7 @@ namespace JobPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Sl,Name,IconClass,Order,MenuId")] SubMenu subMenu)
         {
+            base.Create();
             if (ModelState.IsValid)
             {
                 DataController<SubMenu>.Insert(subMenu);
@@ -84,6 +83,7 @@ namespace JobPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Sl,Name,IconClass,Order,MenuId")] SubMenu subMenu)
         {
+            base.Edit(subMenu.Sl);
             if (ModelState.IsValid)
             {
                 DataController<SubMenu>.Update(subMenu);
