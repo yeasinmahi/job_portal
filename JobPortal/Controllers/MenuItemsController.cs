@@ -1,28 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
 using DAL.Models;
 using Others.Enum;
 using DAL.Controller;
+using JobPortal.Controllers.Common;
 
 namespace JobPortal.Controllers
 {
-    public class MenuItemsController : Controller
+    public class MenuItemsController : BaseController
     {
-        public MenuItemsController()
-        {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Index, "MenuItem");
-        }
+        public MenuItemsController() : base("MenuItem"){}
 
         // GET: MenuItems
-        public ActionResult Index()
+        public override ActionResult Index()
         {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Index, "MenuItem");
+            base.Index();
             return View(DataController<MenuItem>.GetAll());
         }
         
@@ -38,9 +30,9 @@ namespace JobPortal.Controllers
         }
 
         // GET: MenuItems/Details/5
-        public ActionResult Details(int? id)
+        public override ActionResult Details(int? id)
         {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Details, "MenuItem");
+            base.Details(id);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -54,12 +46,12 @@ namespace JobPortal.Controllers
         }
 
         // GET: MenuItems/Create
-        public ActionResult Create()
+        public override ActionResult Create()
         {
+            base.Create();
             ViewBag.MenuId = new SelectList(DataController<Menu>.GetAll(), "Sl", "Name");
             ViewBag.SubMenuId = new SelectList(DataController<SubMenu>.GetAll(), "Sl", "Name");
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Create, "MenuItem");
-            return View();
+            return View("Edit");
         }
 
         // POST: MenuItems/Create
@@ -69,6 +61,7 @@ namespace JobPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Sl,Name,IconClass,Order,MenuId,SubMenuId,ControllerName,ActionName")] MenuItem menuItem)
         {
+            base.Create();
             if (ModelState.IsValid)
             {
                 DataController<MenuItem>.Insert(menuItem);
@@ -76,13 +69,13 @@ namespace JobPortal.Controllers
             }
             ViewBag.MenuId = new SelectList(DataController<Menu>.GetAll(), "Sl", "Name", menuItem.MenuId);
             ViewBag.SubMenuId = new SelectList(DataController<SubMenu>.GetAll(), "Sl", "Name", menuItem.SubMenuId);
-            return View(menuItem);
+            return View("Edit",menuItem);
         }
 
         // GET: MenuItems/Edit/5
-        public ActionResult Edit(int? id)
+        public override ActionResult Edit(int? id)
         {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Edit, "MenuItem");
+            base.Edit(id);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -104,6 +97,7 @@ namespace JobPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Sl,Name,IconClass,Order,MenuId,SubMenuId,ControllerName,ActionName")] MenuItem menuItem)
         {
+            base.Edit(menuItem.Sl);
             if (ModelState.IsValid)
             {
                 DataController<MenuItem>.Update(menuItem);
@@ -115,25 +109,25 @@ namespace JobPortal.Controllers
         }
 
         // GET: MenuItems/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Delete, "MenuItem");
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MenuItem menuItem = DataController<MenuItem>.GetById(id);
-            if (menuItem == null)
-            {
-                return HttpNotFound();
-            }
-            return View(menuItem);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Delete, "MenuItem");
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    MenuItem menuItem = DataController<MenuItem>.GetById(id);
+        //    if (menuItem == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(menuItem);
+        //}
 
         // POST: MenuItems/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public override ActionResult Delete(int id)
         {
             MenuItem menuItem = DataController<MenuItem>.GetById(id);
             DataController<MenuItem>.Delete(menuItem);

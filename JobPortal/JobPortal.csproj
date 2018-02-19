@@ -217,13 +217,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Common\AccountController.cs" />
+    <Compile Include="Controllers\Common\BaseController.cs" />
+    <Compile Include="Controllers\Common\HomeController.cs" />
+    <Compile Include="Controllers\Common\ManageController.cs" />
     <Compile Include="Controllers\MenuItemsController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
-    <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\RolePermissionsController.cs" />
+    <Compile Include="Controllers\Common\PageController.cs" />
     <Compile Include="Controllers\SubMenusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -325,6 +326,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -344,16 +346,12 @@
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Menus\Create.cshtml" />
-    <Content Include="Views\Menus\Details.cshtml" />
     <Content Include="Views\Menus\Edit.cshtml" />
     <Content Include="Views\Menus\Index.cshtml" />
     <Content Include="Views\Shared\PartialView\_NestedLayout.cshtml" />
-    <Content Include="Views\SubMenus\Create.cshtml" />
     <Content Include="Views\SubMenus\Details.cshtml" />
     <Content Include="Views\SubMenus\Edit.cshtml" />
     <Content Include="Views\SubMenus\Index.cshtml" />
-    <Content Include="Views\MenuItems\Create.cshtml" />
     <Content Include="Views\MenuItems\Details.cshtml" />
     <Content Include="Views\MenuItems\Edit.cshtml" />
     <Content Include="Views\MenuItems\Index.cshtml" />
@@ -362,6 +360,7 @@
     <Content Include="Views\RolePermissions\Details.cshtml" />
     <Content Include="Views\RolePermissions\Edit.cshtml" />
     <Content Include="Views\RolePermissions\Index.cshtml" />
+    <Content Include="Views\Menus\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

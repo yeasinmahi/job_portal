@@ -131,6 +131,10 @@
     <Compile Include="Migrations\201802180838105_add virtual identityrole in menu.Designer.cs">
       <DependentUpon>201802180838105_add virtual identityrole in menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802181145341_Change MenuItem Foreign Key.cs" />
+    <Compile Include="Migrations\201802181145341_Change MenuItem Foreign Key.Designer.cs">
+      <DependentUpon>201802181145341_Change MenuItem Foreign Key.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -160,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802180838105_add virtual identityrole in menu.resx">
       <DependentUpon>201802180838105_add virtual identityrole in menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802181145341_Change MenuItem Foreign Key.resx">
+      <DependentUpon>201802181145341_Change MenuItem Foreign Key.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

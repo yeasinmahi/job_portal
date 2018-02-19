@@ -4,12 +4,12 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using DAL.Models;
+using JobPortal.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using JobPortal.ViewModels;
 
-namespace JobPortal.Controllers
+namespace JobPortal.Controllers.Common
 {
     [Authorize]
     public class AccountController : Controller

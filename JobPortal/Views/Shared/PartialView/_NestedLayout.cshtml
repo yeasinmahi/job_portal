@@ -29,13 +29,13 @@
             using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="box-body">
                     @RenderBody()
                 </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                    @Html.ActionLink("Back to List", "Index", null, null, new {@class = "btn btn-primary pull-left"})
+                    @Html.ActionLink("Back to List", "Index", null, null, new { @class = "btn btn-primary pull-left" })
                 </div>
             }
         }
@@ -110,20 +110,20 @@
         }
         else if (viewProperty.ViewPage.Equals(Enums.ViewPage.Details))
         {
-            <br/>
+            <br />
             <div class="box-body">
                 @RenderBody()
-             </div>
-                <div class="box-footer">
-                    @Html.ActionLink("Edit", "Edit", null, new { id = Model.Sl }, new { @class = "btn btn-primary pull-right" })
-                    @Html.ActionLink("Back to List", "Index", null, null, new { @class = "btn btn-primary pull-left" })
-                </div>
-                }
             </div>
-    @section content{
-        @RenderSection("content", false)
-    }
-    @section scripts{
-        @RenderSection("scripts", false)
-    }
+            <div class="box-footer">
+                @Html.ActionLink("Edit", "Edit", null, new { id = Model.Sl }, new { @class = "btn btn-primary pull-right" })
+                @Html.ActionLink("Back to List", "Index", null, null, new { @class = "btn btn-primary pull-left" })
+            </div>
+        }
+    </div>
+            @section content{
+                @RenderSection("content", false)
+            }
+            @section scripts{
+                @RenderSection("scripts", false)
+            }
 }

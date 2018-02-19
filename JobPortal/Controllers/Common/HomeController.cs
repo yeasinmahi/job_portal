@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using DAL.Controller;
 using DAL.Models;
 
-namespace JobPortal.Controllers
+namespace JobPortal.Controllers.Common
 {
     public class HomeController : Controller
     {

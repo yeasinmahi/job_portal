@@ -1,31 +1,26 @@
 ﻿using System.Net;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using DAL.Controller;
+using JobPortal.Controllers.Common;
 using Others.Enum;
 using Menu = DAL.Models.Menu;
-using Others.UI;
 
 namespace JobPortal.Controllers
 {
-    public class MenusController : Controller
+    public class MenusController : BaseController
     {
-        
-        public MenusController()
-        {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Index, "Menu");
-        }
+        public MenusController() : base("Menu"){}
         // GET: Menus
-        public ActionResult Index()
+        public override ActionResult Index()
         {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Index, "Menu");
+            base.Index();
             return View(DataController<Menu>.GetAll());
         }
 
         // GET: Menus/Details/5
-        public ActionResult Details(int? id)
+        public override ActionResult Details(int? id)
         {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Details, "Menu");
+            base.Details(id);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,11 +34,10 @@ namespace JobPortal.Controllers
         }
 
         // GET: Menus/Create
-        public ActionResult Create()
+        public override ActionResult Create()
         {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Create, "Menu");
-
-            return View();
+            base.Create();
+            return View("Edit");
         }
 
         // POST: Menus/Create
@@ -53,18 +47,20 @@ namespace JobPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Sl,Name,IconClass,Order")] Menu menu)
         {
+            base.Create();
             if (ModelState.IsValid)
             {
                 DataController<Menu>.Insert(menu);
                 return RedirectToAction("Index");
             }
 
-            return View(menu);
+            return View("Edit",menu);
         }
 
         // GET: Menus/Edit/5
-        public ActionResult Edit(int? id)
+        public override ActionResult Edit(int? id)
         {
+            base.Edit(id);
             ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Edit, "Menu");
             if (id == null)
             {
@@ -85,6 +81,7 @@ namespace JobPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Sl,Name,IconClass,Order")] Menu menu)
         {
+            base.Edit(menu.Sl);
             if (ModelState.IsValid)
             {
                 DataController<Menu>.Update(menu);
@@ -94,25 +91,25 @@ namespace JobPortal.Controllers
         }
 
         // GET: Menus/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Delete, "Menu");
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Menu menu = DataController<Menu>.GetById(id);
-            if (menu == null)
-            {
-                return HttpNotFound();
-            }
-            return View(menu);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Delete, "Menu");
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Menu menu = DataController<Menu>.GetById(id);
+        //    if (menu == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(menu);
+        //}
 
         // POST: Menus/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public override ActionResult Delete(int id)
         {
             Menu menu = DataController<Menu>.GetById(id);
             DataController<Menu>.Delete(menu);

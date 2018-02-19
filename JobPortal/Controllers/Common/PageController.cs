@@ -1,8 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using DAL.Controller;
+using DAL.Models;
 using Others.Enum;
 using Others.UI;
 
-namespace JobPortal.Controllers
+namespace JobPortal.Controllers.Common
 {
     public class PageController : Controller
     {
@@ -32,5 +36,26 @@ namespace JobPortal.Controllers
             }
             return viewProperty;
         }
+        public ActionResult GetJsonSubMenusByMenuId(int menuId)
+        {
+            var s = from p in DataController<SubMenu>.Get(x => x.MenuId.Equals(menuId)).AsEnumerable()
+                    select new SubMenu { Sl = p.Sl, Name = p.Name };
+            return Json(s, JsonRequestBehavior.AllowGet);
+        }
+
+        public static List<Menu> GetMenus()
+        {
+            return DataController<Menu>.GetAll().ToList();
+        }
+
+        public static List<SubMenu> GetSubMenusByMenuId(int menuId)
+        {
+            return DataController<SubMenu>.Get(x => x.MenuId.Equals(menuId)).ToList();
+        }
+        public static List<SubMenu> GetMenuItems(int menuId)
+        {
+            return DataController<SubMenu>.Get(x => x.MenuId.Equals(menuId)).ToList();
+        }
     }
+    
 }
