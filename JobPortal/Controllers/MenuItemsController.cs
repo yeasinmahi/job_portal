@@ -25,6 +25,17 @@ namespace JobPortal.Controllers
             ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Index, "MenuItem");
             return View(DataController<MenuItem>.GetAll());
         }
+        
+        //GET: MenuItems By SubmenuId
+        public ActionResult GetMenuItemsBySubmenuId()
+        {
+            int submenuId;
+            Int32.TryParse(Request["SubmenuId"], out submenuId);
+            var s = from p in DataController<MenuItem>.GetAll().AsEnumerable()
+                    where p.SubMenuId == submenuId
+                    select new MenuItem { Sl = p.Sl, Name = p.Name };
+            return Json(s, JsonRequestBehavior.AllowGet);
+        }
 
         // GET: MenuItems/Details/5
         public ActionResult Details(int? id)
