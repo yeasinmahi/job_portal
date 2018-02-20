@@ -28,6 +28,8 @@ namespace DAL.Models
         public DbSet<Menu> Menu { get; set; } 
         public DbSet<SubMenu> SubMenu { get; set; } 
         public DbSet<MenuItem> MenuItem { get; set; } 
-        public DbSet<RolePermission> RolePermission { get; set; } 
+        public DbSet<RolePermission> RolePermission { get; set; }
+
+        public DbSet<ApplicationUserRole> IdentityUserRoles { get; set; }
     }
 }

@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Models
 {
@@ -22,5 +24,10 @@ namespace DAL.Models
     public class ApplicationUserRole : IdentityUserRole
     {
         
+    }
+    public class ApplicationRole : IdentityRole
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Sl { get; set; }
     }
 }

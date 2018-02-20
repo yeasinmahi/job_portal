@@ -107,33 +107,10 @@
     <Compile Include="Controller\Repository.cs" />
     <Compile Include="Controller\StartupData.cs" />
     <Compile Include="IController\IRepository.cs" />
-    <Compile Include="Migrations\201802101113584_init.cs" />
-    <Compile Include="Migrations\201802101113584_init.Designer.cs">
-      <DependentUpon>201802101113584_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802110928586_adding menu.cs" />
-    <Compile Include="Migrations\201802110928586_adding menu.Designer.cs">
-      <DependentUpon>201802110928586_adding menu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802120620174_change menu property.cs" />
-    <Compile Include="Migrations\201802120620174_change menu property.Designer.cs">
-      <DependentUpon>201802120620174_change menu property.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802120627503_change menu property2.cs" />
-    <Compile Include="Migrations\201802120627503_change menu property2.Designer.cs">
-      <DependentUpon>201802120627503_change menu property2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802180835557_comment virtual identityrole in menu.cs" />
-    <Compile Include="Migrations\201802180835557_comment virtual identityrole in menu.Designer.cs">
-      <DependentUpon>201802180835557_comment virtual identityrole in menu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802180838105_add virtual identityrole in menu.cs" />
-    <Compile Include="Migrations\201802180838105_add virtual identityrole in menu.Designer.cs">
-      <DependentUpon>201802180838105_add virtual identityrole in menu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802181145341_Change MenuItem Foreign Key.cs" />
-    <Compile Include="Migrations\201802181145341_Change MenuItem Foreign Key.Designer.cs">
-      <DependentUpon>201802181145341_Change MenuItem Foreign Key.cs</DependentUpon>
+
+    <Compile Include="Migrations\201802201051093_init.cs" />
+    <Compile Include="Migrations\201802201051093_init.Designer.cs">
+      <DependentUpon>201802201051093_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -147,33 +124,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802101113584_init.resx">
-      <DependentUpon>201802101113584_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802110928586_adding menu.resx">
-      <DependentUpon>201802110928586_adding menu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802120620174_change menu property.resx">
-      <DependentUpon>201802120620174_change menu property.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802120627503_change menu property2.resx">
-      <DependentUpon>201802120627503_change menu property2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802180835557_comment virtual identityrole in menu.resx">
-      <DependentUpon>201802180835557_comment virtual identityrole in menu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802180838105_add virtual identityrole in menu.resx">
-      <DependentUpon>201802180838105_add virtual identityrole in menu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802181145341_Change MenuItem Foreign Key.resx">
-      <DependentUpon>201802181145341_Change MenuItem Foreign Key.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
+
     <ProjectReference Include="..\Others\Others.csproj">
       <Project>{B0B0759A-A380-4C0F-89D5-5A4C98D2F26E}</Project>
       <Name>Others</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201802201051093_init.resx">
+      <DependentUpon>201802201051093_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
