@@ -26,7 +26,7 @@ namespace DAL.Controller
         {
             lock (_lockObj)
             {
-                return _dbSet.ToList();
+                return _dbSet.AsNoTracking().ToList();
             }
         }
 
@@ -47,7 +47,9 @@ namespace DAL.Controller
         {
             lock (_lockObj)
             {
-                return _dbSet.Find(id);
+                var entity = _context.Set<T>().Find(id);
+                _context.Entry(entity).State = EntityState.Detached;
+                return entity;
             }
         }
         public T Insert(T obj)
@@ -85,9 +87,13 @@ namespace DAL.Controller
         {
             lock (_lockObj)
             {
-                _dbSet.Attach(obj);
-                _context.Entry(obj).State = EntityState.Modified;
-                Save();
+                var entry = _context.Entry(obj);
+                if (entry.State == EntityState.Detached || entry.State == EntityState.Modified)
+                {
+                    entry.State = EntityState.Modified; //do it here
+                    _context.Set<T>().Attach(obj); //attach
+                    Save(); //save it
+                }
                 return obj;
             }
         }
