@@ -1,10 +1,9 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DAL.Models
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDisposable
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
             : base("JPConnection", throwIfV1Schema: false)

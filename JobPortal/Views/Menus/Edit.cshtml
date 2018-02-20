@@ -1,10 +1,14 @@
-﻿@model DAL.Models.Menu
+﻿@using Others.Enum
+@using Others.UI
+@model DAL.Models.Menu
 
 @{
     Layout = "~/Views/Shared/PartialView/_NestedLayout.cshtml";
+    if (((ViewProperty)ViewBag.ViewProperty).ViewPage.Equals(Enums.ViewPage.Edit))
+    {
+        @Html.HiddenFor(model => model.Sl)
+    }
 }
-
-@Html.HiddenFor(model => model.Sl)
 <div class="form-group">
     @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
     @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = @Html.DisplayNameFor(n => n.Name) } })

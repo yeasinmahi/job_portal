@@ -52,10 +52,33 @@ namespace JobPortal.Controllers.Common
         {
             return DataController<SubMenu>.Get(x => x.MenuId.Equals(menuId)).ToList();
         }
-        public static List<SubMenu> GetMenuItems(int menuId)
+        public static List<MenuItem> GetMenuItemsByMenuId(int menuId)
         {
-            return DataController<SubMenu>.Get(x => x.MenuId.Equals(menuId)).ToList();
+            return DataController<MenuItem>.Get(x => x.MenuId.Equals(menuId) && x.SubMenuId.Equals(0)).ToList();
         }
+        public static List<MenuItem> GetMenuItemsBySubMenuId(int? subMenuId)
+        {
+            return DataController<MenuItem>.Get(x => x.SubMenuId.Equals(subMenuId)).ToList();
+        }
+
+        public static List<MenuItem> GetSubMenuAndMenuItems(int menuId)
+        {
+            List<SubMenu> subMenus = GetSubMenusByMenuId(menuId);
+            List<MenuItem> menuItems = GetMenuItemsByMenuId(menuId);
+            foreach (SubMenu subMenu in subMenus)
+            {
+                MenuItem menuItem = new MenuItem
+                {
+                    Name = subMenu.Name,
+                    IconClass = subMenu.IconClass,
+                    Order = subMenu.Order,
+                    MenuId = subMenu.MenuId,
+                    SubMenuId = subMenu.Sl
+                };
+                menuItems.Add(menuItem);
+            }
+            return menuItems.OrderBy(x=>x.Order).ToList();
+        } 
     }
     
 }
