@@ -1,4 +1,6 @@
-﻿<!-- Left side column. contains the logo and sidebar -->
+﻿@using DAL.Models
+@using JobPortal.Controllers.Common
+<!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -157,6 +159,60 @@
                     <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
                 </ul>
             </li>
+            @{
+                List<Menu> menus = PageController.GetMenus();
+
+                foreach (Menu menu in menus)
+                {
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-share"></i> <span>@menu.Name</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        @{
+                            List<MenuItem> menuItems = PageController.GetSubMenuAndMenuItems(menu.Sl);
+                            <ul class="treeview-menu">
+                                @{
+                                    foreach (MenuItem menuItem in menuItems)
+                                    {
+                                        if (String.IsNullOrWhiteSpace(menuItem.ControllerName))
+                                        {
+                                            <li class="treeview">
+                                                <a href="#">
+                                                    <i class="fa fa-circle-o"></i> @menuItem.Name
+                                                    <span class="pull-right-container">
+                                                        <i class="fa fa-angle-left pull-right"></i>
+                                                    </span>
+                                                </a>
+                                                @{
+                                                    List<MenuItem> menuItems2 = PageController.GetMenuItemsBySubMenuId(menuItem.SubMenuId);
+                                                    <ul class="treeview-menu">
+                                                        @{
+                                                            foreach (MenuItem menuItem2 in menuItems2)
+                                                            {
+                                                                <li><a href="@menuItem2.ControllerName'/'@menuItem2.ActionName"><i class="fa fa-circle-o"></i>@menuItem2.Name</a></li>
+                                                            }
+                                                        }
+
+                                                    </ul>
+                                                }
+                                            </li>
+                                                            }
+                                                            else
+                                                            {
+                                                                <li><a href="@menuItem.ControllerName'/'@menuItem.ActionName"><i class="fa fa-circle-o"></i> @menuItem.Name</a></li>
+                                                                }
+
+                                                            }
+                                }
+
+                            </ul>
+                        }
+                    </li>
+                                                            }
+            }
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-share"></i> <span>Multilevel</span>
