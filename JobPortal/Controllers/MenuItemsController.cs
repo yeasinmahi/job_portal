@@ -1,7 +1,8 @@
-﻿using System.Net;
+﻿using System;
+using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using DAL.Models;
-using Others.Enum;
 using DAL.Controller;
 using JobPortal.Controllers.Common;
 

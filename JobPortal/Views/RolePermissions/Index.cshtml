@@ -1,58 +1,29 @@
-﻿@model IEnumerable<DAL.Models.RolePermission>
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
 
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/PartialView/_NestedLayout.cshtml";
+    int rowNo = 0;
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table id="myTable" class="table table-striped dt-responsive" width=100%>
+    <thead>
     <tr>
+        <th>SL</th>
         <th>
-            @Html.DisplayNameFor(model => model.MenuItem.Name)
+            @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RoleId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CanAdd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CanEdit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CanDelete)
-        </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MenuItem.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoleId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CanAdd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CanEdit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CanDelete)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Sl }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Sl }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Sl })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @(rowNo += 1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+            </tr>
+        }
 
 </table>
