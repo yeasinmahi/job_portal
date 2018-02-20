@@ -1,7 +1,8 @@
-﻿using System.Net;
+﻿using System;
+using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using DAL.Models;
-using Others.Enum;
 using DAL.Controller;
 using JobPortal.Controllers.Common;
 
@@ -16,6 +17,17 @@ namespace JobPortal.Controllers
         {
             base.Index();
             return View(DataController<MenuItem>.GetAll());
+        }
+        
+        //GET: MenuItems By SubmenuId
+        public ActionResult GetMenuItemsBySubmenuId()
+        {
+            int submenuId;
+            Int32.TryParse(Request["SubmenuId"], out submenuId);
+            var s = from p in DataController<MenuItem>.GetAll().AsEnumerable()
+                    where p.SubMenuId == submenuId
+                    select new MenuItem { Sl = p.Sl, Name = p.Name };
+            return Json(s, JsonRequestBehavior.AllowGet);
         }
 
         // GET: MenuItems/Details/5
