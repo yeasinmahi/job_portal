@@ -1,4 +1,5 @@
-﻿using DAL.Models;
+﻿using System;
+using DAL.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Others.Enum;
@@ -11,13 +12,17 @@ namespace DAL.Controller
 
         public static void AddstartupData()
         {
-            if (AddRole())
+            if (AddRoles())
             {
-                AddUser();
+                AddUsers();
+                AddMenus();
+                AddSubMenus();
+                AddMenuItems();
             }
-            
+
         }
-        private static bool AddRole()
+
+        private static bool AddRoles()
         {
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(Context));
             if (!roleManager.RoleExists(Enums.ToFriendlyString(Enums.DefaultRole.SystemAdmin)))
@@ -30,7 +35,7 @@ namespace DAL.Controller
             return false;
         }
 
-        private static void AddUser()
+        private static void AddUsers()
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(Context));
             ApplicationUser applicationUser = new ApplicationUser
@@ -63,5 +68,133 @@ namespace DAL.Controller
             }
         }
 
+        private static void AddMenus()
+        {
+            Context.Database.ExecuteSqlCommand(string.Format("DBCC CHECKIDENT ([Menus], RESEED, {0})", 0));
+            Menu menu = new Menu
+            {
+                Sl = 1,
+                Name = "Role Management",
+                IconClass = "fa fa-role",
+                Order = 1
+            };
+            DataController<Menu>.Insert(menu);
+            menu = new Menu
+            {
+                Sl = 2,
+                Name = "Menu Management",
+                IconClass = "fa fa-user",
+                Order = 2
+            };
+            DataController<Menu>.Insert(menu);
+            //Context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Menus] OFF");
+        }
+
+        private static void AddSubMenus()
+        {
+            SubMenu subMenu = new SubMenu
+            {
+                Sl = 1,
+                Name = "Menu",
+                IconClass = "fa fa-circle",
+                Order = 1,
+                MenuId = 2
+            };
+            DataController<SubMenu>.Insert(subMenu);
+            subMenu = new SubMenu
+            {
+                Sl = 2,
+                Name = "Sub Menu",
+                IconClass = "fa fa-circle",
+                Order = 2,
+                MenuId = 2
+            };
+            DataController<SubMenu>.Insert(subMenu);
+            subMenu = new SubMenu
+            {
+                Sl = 3,
+                Name = "Menu Item",
+                IconClass = "fa fa-circle",
+                Order = 3,
+                MenuId = 2
+            };
+            DataController<SubMenu>.Insert(subMenu);
+        }
+
+        private static void AddMenuItems()
+        {
+            MenuItem menuItem = new MenuItem
+            {
+                Sl = 1,
+                Name = "Add",
+                ActionName = "Create",
+                ControllerName = "Menu",
+                IconClass = "fa fa-circle",
+                Order = 1,
+                SubMenuId = 1,
+                MenuId = 2
+            };
+            DataController<MenuItem>.Insert(menuItem);
+            menuItem = new MenuItem
+            {
+                Sl = 2,
+                Name = "List",
+                ActionName = "Index",
+                ControllerName = "Menu",
+                IconClass = "fa fa-circle",
+                Order = 2,
+                SubMenuId = 1,
+                MenuId = 2
+            };
+            DataController<MenuItem>.Insert(menuItem);
+            menuItem = new MenuItem
+            {
+                Sl = 3,
+                Name = "Add",
+                ActionName = "Create",
+                ControllerName = "SubMenu",
+                IconClass = "fa fa-circle",
+                Order = 1,
+                SubMenuId = 2,
+                MenuId = 2
+            };
+            DataController<MenuItem>.Insert(menuItem);
+            menuItem = new MenuItem
+            {
+                Sl = 4,
+                Name = "List",
+                ActionName = "Index",
+                ControllerName = "SubMenu",
+                IconClass = "fa fa-circle",
+                Order = 2,
+                SubMenuId = 2,
+                MenuId = 2
+            };
+            DataController<MenuItem>.Insert(menuItem);
+            menuItem = new MenuItem
+            {
+                Sl = 5,
+                Name = "Add",
+                ActionName = "Create",
+                ControllerName = "MenuItem",
+                IconClass = "fa fa-circle",
+                Order = 1,
+                SubMenuId = 3,
+                MenuId = 2
+            };
+            DataController<MenuItem>.Insert(menuItem);
+            menuItem = new MenuItem
+            {
+                Sl = 6,
+                Name = "List",
+                ActionName = "Index",
+                ControllerName = "MenuItem",
+                IconClass = "fa fa-circle",
+                Order = 2,
+                SubMenuId = 3,
+                MenuId = 2
+            };
+            DataController<MenuItem>.Insert(menuItem);
+        }
     }
 }
