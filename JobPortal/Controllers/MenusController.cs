@@ -61,7 +61,6 @@ namespace JobPortal.Controllers
         public override ActionResult Edit(int? id)
         {
             base.Edit(id);
-            ViewBag.ViewProperty = PageController.GetViewProperty(Enums.ViewPage.Edit, "Menu");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
