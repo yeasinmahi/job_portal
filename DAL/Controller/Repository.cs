@@ -11,7 +11,7 @@ namespace DAL.Controller
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private static ApplicationDbContext _context;
+        private ApplicationDbContext _context;
         private readonly DbSet<T> _dbSet;
         private readonly object _lockObj=new object();
         public Repository()
