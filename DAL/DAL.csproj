@@ -107,10 +107,9 @@
     <Compile Include="Controller\Repository.cs" />
     <Compile Include="Controller\StartupData.cs" />
     <Compile Include="IController\IRepository.cs" />
-
-    <Compile Include="Migrations\201802201051093_init.cs" />
-    <Compile Include="Migrations\201802201051093_init.Designer.cs">
-      <DependentUpon>201802201051093_init.cs</DependentUpon>
+    <Compile Include="Migrations\201802260547264_init.cs" />
+    <Compile Include="Migrations\201802260547264_init.Designer.cs">
+      <DependentUpon>201802260547264_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -124,15 +123,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-
     <ProjectReference Include="..\Others\Others.csproj">
       <Project>{B0B0759A-A380-4C0F-89D5-5A4C98D2F26E}</Project>
       <Name>Others</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802201051093_init.resx">
-      <DependentUpon>201802201051093_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802260547264_init.resx">
+      <DependentUpon>201802260547264_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
