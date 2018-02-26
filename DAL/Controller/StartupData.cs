@@ -70,7 +70,7 @@ namespace DAL.Controller
 
         private static void AddMenus()
         {
-            Context.Database.ExecuteSqlCommand(string.Format("DBCC CHECKIDENT ([Menus], RESEED, {0})", 0));
+            Context.Database.ExecuteSqlCommand(string.Format("DBCC CHECKIDENT ([Menus], RESEED, {0})", 1));
             Menu menu = new Menu
             {
                 Sl = 1,
@@ -92,6 +92,7 @@ namespace DAL.Controller
 
         private static void AddSubMenus()
         {
+            Context.Database.ExecuteSqlCommand(string.Format("DBCC CHECKIDENT ([SubMenus], RESEED, {0})", 1));
             SubMenu subMenu = new SubMenu
             {
                 Sl = 1,
@@ -123,6 +124,7 @@ namespace DAL.Controller
 
         private static void AddMenuItems()
         {
+            Context.Database.ExecuteSqlCommand(string.Format("DBCC CHECKIDENT ([MenuItems], RESEED, {0})", 1));
             MenuItem menuItem = new MenuItem
             {
                 Sl = 1,

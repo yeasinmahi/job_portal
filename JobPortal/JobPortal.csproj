@@ -221,6 +221,8 @@
     <Compile Include="Controllers\Common\BaseController.cs" />
     <Compile Include="Controllers\Common\HomeController.cs" />
     <Compile Include="Controllers\Common\ManageController.cs" />
+    <Compile Include="Controllers\Common\RoleController.cs" />
+    <Compile Include="Controllers\Common\UsersController.cs" />
     <Compile Include="Controllers\MenuItemsController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
     <Compile Include="Controllers\RolePermissionsController.cs" />
@@ -308,8 +310,6 @@
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Logina.cshtml" />
-    <Content Include="Views\Account\Registera.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
@@ -362,6 +362,9 @@
     <Content Include="Views\RolePermissions\Edit.cshtml" />
     <Content Include="Views\RolePermissions\Index.cshtml" />
     <Content Include="Views\Menus\Details.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

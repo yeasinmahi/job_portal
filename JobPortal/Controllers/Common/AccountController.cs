@@ -16,9 +16,11 @@ namespace JobPortal.Controllers.Common
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        ApplicationDbContext context;
 
         public AccountController()
         {
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -74,7 +76,7 @@ namespace JobPortal.Controllers.Common
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: true);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -138,6 +140,8 @@ namespace JobPortal.Controllers.Common
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+                                            .ToList(), "Name", "Name");
             return View();
         }
 
@@ -150,7 +154,7 @@ namespace JobPortal.Controllers.Common
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -168,9 +172,13 @@ namespace JobPortal.Controllers.Common
                         await UserManager.SendEmailAsync(user.Id, "Confirm your account", message);
                         TempData["Message"] = message;
                     }
+                    //Assign Role to user Here      
+                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
                     //return RedirectToAction("NewAccountCheckEmail");
                     return RedirectToAction("Index", "Home");
                 }
+                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+                                          .ToList(), "Name", "Name");
                 AddErrors(result);
             }
 
