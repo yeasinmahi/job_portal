@@ -25,9 +25,4 @@ namespace DAL.Models
     {
         
     }
-    public class ApplicationRole : IdentityRole
-    {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Sl { get; set; }
-    }
 }
