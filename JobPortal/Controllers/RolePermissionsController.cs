@@ -23,7 +23,7 @@ namespace JobPortal.Controllers
         public override ActionResult Index()
         {
             base.Index();
-            return View(DataController<IdentityRole>.GetAll());
+            return View(DataController<ApplicationRole>.GetAll());
         }
 
         // GET: RolePermissions/Details/5
@@ -88,6 +88,12 @@ namespace JobPortal.Controllers
         // POST: RolePermissions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        public ActionResult EditRolePermission(string id)
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Sl,RoleId,MenuItemId,CanAdd,CanEdit,CanDelete")] RolePermission rolePermission)
@@ -101,6 +107,7 @@ namespace JobPortal.Controllers
             ViewBag.MenuItemId = new SelectList(DataController<MenuItem>.GetAll(), "Sl", "Name", rolePermission.MenuItemId);
             return View(rolePermission);
         }
+
 
         // POST: RolePermissions/Delete/5
         [HttpPost, ActionName("Delete")]

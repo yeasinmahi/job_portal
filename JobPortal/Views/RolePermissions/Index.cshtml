@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+﻿@model IEnumerable<DAL.Models.ApplicationRole>
 
 @{
     Layout = "~/Views/Shared/PartialView/_NestedLayout.cshtml";
@@ -24,7 +24,7 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Sl })
                 </td>
             </tr>
         }

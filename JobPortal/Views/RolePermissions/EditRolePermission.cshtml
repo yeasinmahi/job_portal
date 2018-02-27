@@ -1,0 +1,48 @@
+﻿@using DAL.Models
+@using JobPortal.Controllers.Common
+@{
+    ViewBag.Title = "EditRolePermission";
+    Layout = "~/Views/Shared/PartialView/_NestedLayout.cshtml";
+
+}
+
+
+@{
+    List<Menu> menus = PageController.GetMenus();
+
+    foreach (Menu menu in menus)
+    {
+        <i class="fa fa-share"></i>
+        <span>@menu.Name</span>
+
+        {
+            List<MenuItem> menuItems = PageController.GetSubMenuAndMenuItems(menu.Sl);
+
+            {
+                foreach (MenuItem menuItem in menuItems)
+                {
+                    if (String.IsNullOrWhiteSpace(menuItem.ControllerName))
+                    {
+                        <i class="fa fa-circle-o"></i>
+                        @menuItem.Name
+
+                        {
+                            List<MenuItem> menuItems2 = PageController.GetMenuItemsBySubMenuId(menuItem.SubMenuId);
+                            {
+                                foreach (MenuItem menuItem2 in menuItems2)
+                                {
+                                    <li><a href="@menuItem2.ControllerName'/'@menuItem2.ActionName"><i class="fa fa-circle-o"></i>@menuItem2.Name</a></li>
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        <li><a href="@menuItem.ControllerName'/'@menuItem.ActionName"><i class="fa fa-circle-o"></i> @menuItem.Name</a></li>
+                    }
+                }
+            }
+        }
+    }
+}
