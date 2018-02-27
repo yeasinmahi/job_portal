@@ -23,7 +23,7 @@ namespace JobPortal.Controllers
         public override ActionResult Index()
         {
             base.Index();
-            return View(DataController<ApplicationRole>.GetAll());
+            return View(DataController<IdentityRole>.GetAll());
         }
 
         // GET: RolePermissions/Details/5

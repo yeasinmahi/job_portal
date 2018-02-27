@@ -361,9 +361,7 @@
     <Content Include="Views\RolePermissions\Edit.cshtml" />
     <Content Include="Views\RolePermissions\Index.cshtml" />
     <Content Include="Views\Menus\Details.cshtml" />
-
     <Content Include="Views\RolePermissions\EditRolePermission.cshtml" />
-
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
